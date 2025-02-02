@@ -35,7 +35,8 @@ export default function RoomLayout({
         <h1 className="text-5xl uppercase">{type}</h1>
         <p className="text-xs text-neutral-500 text-center mt-4">
           Comfortable rest in your imagination,
-          <br /> Pleasure meeting. It's an auxiliary facility prepared for you.
+          <br /> Pleasure meeting. It&apos;s an auxiliary facility prepared for
+          you.
         </p>
         <span className="text-xs text-neutral-500 my-6 underline">
           풍경보기

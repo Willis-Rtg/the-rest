@@ -160,7 +160,10 @@ export default function BeachClient({ isAdmin, initialBeaches }: IBeachClient) {
             onTouchEnd={(e) => onTouchEnd(e, index)}
           >
             {beach.files.map((file, index) => (
-              <div className="relative w-[60vw] h-[60vw] flex-shrink-0 ">
+              <div
+                key={index}
+                className="relative w-[60vw] h-[60vw] flex-shrink-0 "
+              >
                 <Image
                   key={index}
                   className="rounded-xl"
