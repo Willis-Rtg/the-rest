@@ -1,3 +1,36 @@
-export default function Special() {
-  return <div>special</div>;
+import SpecialClient from "./client";
+import { PanoramaType } from "@prisma/client";
+import { getPanoramaCache } from "./schemas";
+import { revalidateTag } from "next/cache";
+
+export default async function Special({
+  searchParams,
+}: {
+  searchParams: {
+    type: string;
+  };
+}) {
+  let panoramaType: PanoramaType;
+  switch (searchParams.type) {
+    case "해변&산책로":
+      panoramaType = "sea";
+      break;
+    case "오션뷰":
+      panoramaType = "oceaon";
+      break;
+    case "바베큐":
+      panoramaType = "barbecue";
+      break;
+    case "잔디마당":
+      panoramaType = "garden";
+      break;
+    default:
+      panoramaType = "sea";
+  }
+
+  const panorama = await getPanoramaCache(panoramaType);
+
+  revalidateTag("special");
+
+  return <SpecialClient panorama={panorama} />;
 }

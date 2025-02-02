@@ -1,21 +1,27 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "imagedelivery.net",
+      },
+      {
+        protocol: "https",
+        hostname: "customer-wsgztd71ai7tosc2.cloudflarestream.com",
+      },
+      {
+        protocol: "https",
+        hostname: "the--rest.s3.ap-northeast-2.amazonaws.com",
+      },
+    ],
+    domains: ["abc-demo.cdn.prismic.io", "images.prismic.io"],
+    dangerouslyAllowSVG: true,
+  },
   // reactStrictMode: true,
-  // webpack: (config) => {
-  //   config.module.rules.push({
-  //     test: /\.svg$/i,
-  //     use: ["@svgr/webpack"],
-  //   });
-  //   return config;
-  // },
   // webpack(config) {
   //   config.module.rules.push({
   //     test: /\.svg$/,
-  //     issuer: {
-  //       test: /\.(js|ts)x?$/,
-  //       // for webpack 5 use
-  //       // { and: [/\.(js|ts)x?$/] }
-  //     },
   //     use: ["@svgr/webpack"],
   //   });
   //   return config;

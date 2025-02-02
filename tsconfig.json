@@ -1,11 +1,9 @@
 {
   "compilerOptions": {
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
+
+    "downlevelIteration": true,
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
@@ -17,15 +15,14 @@
     // "jsx": "preserve",
     "jsx": "preserve",
     "incremental": true,
+    "allowImportingTsExtensions": true,
     "plugins": [
       {
         "name": "next"
       }
     ],
     "paths": {
-      "@/*": [
-        "./*"
-      ]
+      "@/*": ["./*"]
     }
   },
   "include": [
@@ -35,7 +32,5 @@
     ".next/types/**/*.ts",
     "svg.d.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

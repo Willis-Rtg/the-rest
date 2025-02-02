@@ -1,0 +1,129 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  ID        String   @unique
+  password  String
+  Beach     Beach[]
+  bannerId  Int @default(1)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum FileType {
+  video
+  photo
+  svg
+}
+
+model File {
+  id         Int       @id @default(autoincrement())
+  filename   String
+  url        String
+  index      Int
+  type       FileType
+  storageId  String
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  Beach      Beach?    @relation(fields: [beachId], references: [id], onDelete: Cascade)
+  beachId    Int?
+  Room       Room?     @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  roomId     Int?
+  Panorama   Panorama? @relation(fields: [panoramaId], references: [id], onDelete: Cascade)
+  panoramaId Int?
+  Banner     Banner?   @relation(fields: [bannerId], references: [id], onDelete: Cascade)
+  bannerId   Int?
+
+  @@unique([panoramaId,index])
+}
+
+model Beach {
+  id        Int      @id @default(autoincrement())
+  payload   String?
+  files     File[]
+  User      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Room {
+  id          Int      @id @default(autoincrement())
+  title       String
+  structure   String
+  pyong       Int
+  quantity    Int
+  maxQuantity Int
+  addPrice    Int
+  facilities  String
+  extra       String
+  roomPhotos  File[]
+  panorama    Panorama?
+  panoramaId  Int?
+  prices      Price[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+enum Season {
+  base
+  middle
+  busy
+}
+
+enum Week {
+  weekday
+  friday
+  weekend
+}
+
+model Price {
+  id        Int      @id @default(autoincrement())
+  room      Room     @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  roomId    Int
+  season    Season
+  week      Week
+  price     Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum PanoramaType {
+  sea
+  oceaon
+  barbecue
+  garden
+  prologue
+}
+
+model Panorama {
+  id        Int      @id @default(autoincrement())
+  files     File[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  Room      Room? @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  roomId    Int? @unique
+  panoramaType PanoramaType?
+
+  @@unique([panoramaType])
+}
+
+model Banner {
+  id        Int      @id @default(autoincrement())
+  files     File[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
