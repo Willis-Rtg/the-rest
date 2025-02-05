@@ -195,7 +195,7 @@ export default function TopImage({ loggedIn }: ITopImage) {
 
   async function getAdmin() {
     const admin = await getUser();
-    getBanners(admin!.bannerId);
+    getBanners(admin?.bannerId || 1);
     bannerRef.current?.childNodes.forEach((node: any) => {
       const bannerNumber = node.innerHTML.slice(3, 4);
       if (Number(bannerNumber) == admin?.bannerId) {
