@@ -9,6 +9,7 @@ import { LuMenu } from "react-icons/lu";
 import { FaXmark } from "react-icons/fa6";
 import { getSession } from "@/lib/session";
 import { getRoomsInfo, TRooms } from "@/common/actions";
+import { useRouter } from "next/navigation";
 
 export default function TopNav() {
   const [menu, setMenu] = useState(false);
@@ -25,6 +26,15 @@ export default function TopNav() {
   async function getRooms() {
     const rooms = await getRoomsInfo();
     setRooms(rooms);
+  }
+
+  const router = useRouter();
+  function goFirstMenu(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+    e.preventDefault();
+    const target = e.target as HTMLSpanElement;
+    const firstElement = target.parentElement?.nextSibling
+      ?.firstChild as HTMLAnchorElement;
+    router.push(`${firstElement.href}`);
   }
 
   useEffect(() => {
@@ -56,7 +66,9 @@ export default function TopNav() {
           </Link>
           <ul className="gap-5 h-16 items-center hidden  md:flex">
             <li className="relative flex flex-col items-center justify-center group h-full">
-              <span className="hover:cursor-pointer">ABOUT</span>
+              <button onClick={goFirstMenu}>
+                <span className="hover:cursor-pointer">ABOUT</span>
+              </button>
               <div className="absolute top-16 px-8 py-4 bg-[#7C7C7C] bg-opacity-80 text-white shadow-xl hidden group-hover:flex flex-col rounded-lg">
                 <Link href="/about">
                   <span className="font-bold hover:cursor-pointer">
@@ -66,7 +78,9 @@ export default function TopNav() {
               </div>
             </li>
             <li className="relative flex flex-col items-center justify-center group h-full">
-              <span className="hover:cursor-pointer">ROOMS</span>
+              <button onClick={goFirstMenu}>
+                <span className="hover:cursor-pointer">ROOMS</span>
+              </button>
               <div className="absolute top-16 px-6 py-4 bg-[#7C7C7C] bg-opacity-80 text-white shadow-xl hidden group-hover:flex flex-col items-center rounded-lg">
                 {rooms.map((room, index) => (
                   <Link
@@ -90,7 +104,9 @@ export default function TopNav() {
               </div>
             </li>
             <li className="relative flex flex-col items-center group h-full justify-center">
-              <span className="hover:cursor-pointer">SPECIAL</span>
+              <button onClick={goFirstMenu}>
+                <span className="hover:cursor-pointer">SPECIAL</span>
+              </button>
               <div className="absolute top-16 px-8 py-4 bg-[#7C7C7C] bg-opacity-80 text-white shadow-xl hidden group-hover:flex flex-col rounded-lg">
                 <Link href="/special?type=해변%26산책로" className="flex">
                   <span className="font-bold hover:cursor-pointer w-20 text-center">
@@ -120,7 +136,9 @@ export default function TopNav() {
               </div>
             </li>
             <li className="relative flex flex-col items-center group h-full justify-center">
-              <span className="hover:cursor-pointer">RESERVE</span>
+              <button onClick={goFirstMenu}>
+                <span className="hover:cursor-pointer">RESERVE</span>
+              </button>
               <div className="absolute top-16 px-8 py-4 bg-[#7C7C7C] bg-opacity-80 text-white shadow-xl hidden group-hover:flex flex-col rounded-lg">
                 <Link href="/reserve?type=예약안내" className="flex">
                   <span className="font-bold hover:cursor-pointer w-20 text-center">
@@ -140,7 +158,9 @@ export default function TopNav() {
               </div>
             </li>
             <li className="relative flex flex-col items-center group h-full justify-center">
-              <span className="hover:cursor-pointer">TRAVEL</span>
+              <button onClick={goFirstMenu}>
+                <span className="hover:cursor-pointer">TRAVEL</span>
+              </button>
               <div className="absolute top-16 px-8 py-4 bg-[#7C7C7C] bg-opacity-80 text-white shadow-xl hidden group-hover:flex flex-col rounded-lg">
                 <Link href="/travel" className="flex">
                   <span className="font-bold hover:cursor-pointer w-20 text-center">
@@ -150,7 +170,9 @@ export default function TopNav() {
               </div>
             </li>
             <li className="relative flex flex-col items-center group h-full justify-center">
-              <span className="hover:cursor-pointer">LOCATION</span>
+              <span onClick={goFirstMenu}>
+                <span className="hover:cursor-pointer">LOCATION</span>
+              </span>
               <div className="absolute top-16 px-8 py-4 bg-[#7C7C7C] bg-opacity-80 text-white shadow-xl hidden group-hover:flex flex-col rounded-lg">
                 <Link href="/location/direct" className="flex">
                   <span className="font-bold hover:cursor-pointer w-20 text-center">

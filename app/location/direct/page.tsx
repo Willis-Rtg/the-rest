@@ -1,6 +1,13 @@
 import KakaoMap from "@/components/kakao-map";
 import Image from "next/image";
 
+export async function generateMetadata() {
+  return {
+    title: "오시는 길",
+    description: "The 쉼 펜션으로 놀러오세요.",
+  };
+}
+
 export default function Direct() {
   // const [mounted, setMounted] = useState<boolean>(false);
 

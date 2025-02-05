@@ -3,6 +3,19 @@ import { PanoramaType } from "@prisma/client";
 import { getPanoramaCache } from "./schemas";
 import { revalidateTag } from "next/cache";
 
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: {
+    type: string;
+  };
+}) {
+  return {
+    title: searchParams.type,
+    description: "The 쉼 펜션만의 특별한 체험",
+  };
+}
+
 export default async function Special({
   searchParams,
 }: {

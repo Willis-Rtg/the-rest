@@ -10,8 +10,23 @@ import { getSession } from "@/lib/session";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "THE 쉼",
-  description: "태안 가족 펜션",
+  title: {
+    template: "The 쉼 | %s",
+    default: "The 쉼",
+  },
+  description: "태안 몽산포 가족 펜션에서 즐거운 해루질을 체험해보세요.",
+  openGraph: {
+    siteName: "The 쉼",
+    images: {
+      url: "/더쉼전경.png",
+    },
+  },
+  twitter: {
+    title: "The 쉼",
+    images: {
+      url: "/더쉼전경.png",
+    },
+  },
 };
 
 export default async function RootLayout({

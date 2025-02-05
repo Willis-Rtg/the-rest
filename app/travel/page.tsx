@@ -1,7 +1,18 @@
 import Image from "next/image";
 import { Gwendolyn } from "next/font/google";
-import { ArrowRightIcon } from "@heroicons/react/24/solid";
 import { FaArrowRight } from "react-icons/fa6";
+
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: { type: string };
+}) {
+  return {
+    title: searchParams.type,
+    description: "The 쉼 펜션 예약",
+  };
+}
+
 const gwendolyn = Gwendolyn({
   subsets: ["latin"],
   weight: ["400", "700"],

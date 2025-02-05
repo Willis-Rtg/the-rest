@@ -1,3 +1,16 @@
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: {
+    type: string;
+  };
+}) {
+  return {
+    title: searchParams.type,
+    description: "The 쉼 펜션 예약 안내",
+  };
+}
+
 export default function Reserve() {
   return (
     <div className="flex flex-col items-center p-12">
