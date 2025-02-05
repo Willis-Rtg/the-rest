@@ -29,6 +29,10 @@ export default async function RootLayout({
           src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.KAKAO_MAP_KEY}&autoload=false`}
           strategy="beforeInteractive"
         />
+        <meta
+          name="naver-site-verification"
+          content="714f146e5ff05aef0f7501ac8fa6fee6671dac5a"
+        />
       </head>
       <body
         className={`${inter.className} overflow-x-hidden`}
