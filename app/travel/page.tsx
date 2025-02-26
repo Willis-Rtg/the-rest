@@ -8,7 +8,7 @@ export async function generateMetadata({
   searchParams: { type: string };
 }) {
   return {
-    title: "주변 관광지",
+    title: "추천 관광지",
     description: "The 쉼 펜션 예약",
   };
 }
