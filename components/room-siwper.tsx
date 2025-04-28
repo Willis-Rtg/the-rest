@@ -161,7 +161,7 @@ export default function RoomSwiper() {
               className=" left-0 flex flex-col items-center flex-shrink-0 "
             >
               <Image
-                className="transition-all duration-300 md:w-[370px] md:h-[600px]"
+                className="transition-all duration-300 md:w-[370px] md:h-[600px] object-cover"
                 src={room.roomPhotos[0].url}
                 width={270}
                 height={450}
