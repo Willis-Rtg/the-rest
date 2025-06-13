@@ -11,7 +11,7 @@ const beachSchema = z.object({
   payload: z.string(),
 });
 
-export async function uploadBeach(formData: FormData) {
+export async function uploadBeach(_: any, formData: FormData) {
   const data = {
     files: formData.getAll("files"),
     payload: formData.get("payload"),
@@ -40,17 +40,18 @@ export async function uploadBeach(formData: FormData) {
           method: "POST",
           headers: {
             Authorization: `Bearer ${process.env.CLOUDFLARE_API_TOKEN}`,
-            "Content-Type": "multipart/form-data",
           },
           body: beachFormData,
         }
       );
+      console.log(response);
       const responseJson = await response.json();
       if (!responseJson.success) {
         return {
           errors: { fieldError: " upload error." },
         };
       }
+      console.log(responseJson);
       const result = responseJson.result;
       const newFile = await db.file.create({
         data: {
