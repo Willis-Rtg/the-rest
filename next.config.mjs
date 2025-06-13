@@ -4,6 +4,7 @@ const nextConfig = {
   experimental: {
     serverActions: {
       bodySizeLimit: "50mb",
+      serverActions: true,
     },
   },
   router: {
@@ -16,6 +17,7 @@ const nextConfig = {
       sizeLimit: "50mb",
     },
   },
+  responseLimit: "50mb",
   images: {
     remotePatterns: [
       {

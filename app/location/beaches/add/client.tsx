@@ -147,8 +147,6 @@ export default function BeachAddClient() {
     }
     newFormData.append("payload", beach.payload || "");
 
-    // newFormData.headers.set("Content-Type", "multipart/form-data");
-
     uploadBeach(newFormData);
   }
 
