@@ -1,7 +1,6 @@
 "use server";
 
 import { z } from "zod";
-import { TBeach } from "./client";
 import db from "@/lib/db";
 import { getSession } from "@/lib/session";
 import { redirect } from "next/navigation";
@@ -62,6 +61,7 @@ export async function uploadBeach(formData: FormData) {
           beachId: beach.id,
         },
       });
+      console.log(newFile);
       if (!newFile)
         return {
           errors: {

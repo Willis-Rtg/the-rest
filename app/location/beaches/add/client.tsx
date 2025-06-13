@@ -11,6 +11,7 @@ type TFile = {
   url: string;
   type: "photo" | "svg" | "mp4/vedio";
   index: number;
+  test?: string;
 };
 
 export type TBeach = {
@@ -34,21 +35,26 @@ export default function BeachAddClient() {
     const arrFiles = Array.from(files);
 
     for (let [index, file] of arrFiles.entries()) {
-      const url = URL.createObjectURL(file);
-      setBeach((prev) => {
-        return {
-          ...prev,
-          files: [
-            ...(prev?.files || []),
-            {
-              filename: file.name,
-              url,
-              type: "photo",
-              index,
-            },
-          ],
-        };
-      });
+      const reader = new FileReader();
+      let imgUrl = "";
+      reader.readAsDataURL(file);
+      reader.onload = async (event) => {
+        imgUrl = event.target?.result as string;
+        setBeach((prev) => {
+          return {
+            ...prev,
+            files: [
+              ...(prev?.files || []),
+              {
+                filename: file.name,
+                url: imgUrl,
+                type: "photo",
+                index,
+              },
+            ],
+          };
+        });
+      };
     }
   }
 
@@ -148,7 +154,8 @@ export default function BeachAddClient() {
           <input
             id="beachPhotos"
             hidden
-            type={"file"}
+            type="file"
+            name="files"
             multiple
             accept="image/png, image/jpeg, image/webp, image/svg+xml, video/mp4"
             onChange={onChange}
