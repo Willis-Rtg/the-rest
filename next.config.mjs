@@ -6,6 +6,16 @@ const nextConfig = {
       bodySizeLimit: "50mb",
     },
   },
+  router: {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  },
+  api: {
+    bodyParser: {
+      sizeLimit: "50mb",
+    },
+  },
   images: {
     remotePatterns: [
       {
