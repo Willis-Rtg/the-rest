@@ -136,12 +136,18 @@ export default function BeachAddClient() {
     }
     const newFormData = new FormData();
     for (let file of beach.files) {
-      const response = await fetch(file.url);
+      const response = await fetch(file.url, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
       const data = await response.blob();
       const newFile = new File([data], file.filename, {});
       newFormData.append("files", newFile);
     }
     newFormData.append("payload", beach.payload || "");
+
+    // newFormData.headers.set("Content-Type", "multipart/form-data");
 
     uploadBeach(newFormData);
   }

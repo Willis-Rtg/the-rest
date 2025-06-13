@@ -40,6 +40,7 @@ export async function uploadBeach(formData: FormData) {
           method: "POST",
           headers: {
             Authorization: `Bearer ${process.env.CLOUDFLARE_API_TOKEN}`,
+            "Content-Type": "multipart/form-data",
           },
           body: beachFormData,
         }
