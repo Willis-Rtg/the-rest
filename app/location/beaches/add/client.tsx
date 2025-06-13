@@ -158,6 +158,7 @@ export default function BeachAddClient() {
     <div>
       <div className="flex flex-col items-center  py-16 px-8 md:px-32 w-full">
         <form
+          className="flex flex-col items-center"
           action={(payload) => {
             if (!beach?.files.length) return;
             if (beach?.files.length < 2) {
