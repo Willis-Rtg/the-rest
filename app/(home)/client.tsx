@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { Fade } from "react-awesome-reveal";
 import { getHomeBeachesMore, THomeBeaches, THomePanorama } from "./actions";
+import Link from "next/link";
 
 export default function HomeClient({
   panorama,
@@ -165,7 +166,8 @@ export default function HomeClient({
         >
           {beaches.map((beach, index) => {
             return (
-              <div
+              <Link
+                href={`/location/beaches`}
                 key={index}
                 className="relative w-[270px] h-[420px] lg:w-[570px] lg:h-[760px] shrink-0"
               >
@@ -175,7 +177,7 @@ export default function HomeClient({
                   fill
                   alt="beaches"
                 />
-              </div>
+              </Link>
             );
           })}
           <span
