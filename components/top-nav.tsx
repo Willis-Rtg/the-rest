@@ -147,9 +147,9 @@ export default function TopNav() {
                 </Link>
 
                 <Link
-                  href="https://www.bookingplay.co.kr/partner/item/5141/calendar_main/"
+                  href="/reserve?type=예약안내"
                   className="flex"
-                  target="_blank"
+                  // target="_blank"
                 >
                   <span className="font-bold hover:cursor-pointer w-20 text-center">
                     실시간 예약
@@ -303,11 +303,11 @@ export default function TopNav() {
                 <h4 className="text-lg">예약 안내</h4>
               </Link>
               <Link
-                href="https://www.bookingplay.co.kr/partner/item/5141/calendar_main/"
+                href="/reserve?type=예약안내"
                 onClick={() => {
                   setMenu(false);
                 }}
-                target="_blank"
+                // target="_blank"
               >
                 <h4 className="text-lg">실시간 예약</h4>
               </Link>
