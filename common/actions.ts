@@ -161,7 +161,7 @@ export async function uploadBanner(
         new PutObjectCommand({
           Bucket: bucket,
           Key: file_Key,
-          Body: (await files[index].arrayBuffer()) as Buffer,
+          Body: (await files[index].arrayBuffer()) as unknown as Buffer,
           ContentType: "video/mp4",
         })
       );
